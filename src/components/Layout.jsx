@@ -16,13 +16,20 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FaBell, FaClipboardCheck, FaRss } from "react-icons/fa";
-import { AiFillGift } from "react-icons/ai";
-import { BsGearFill } from "react-icons/bs";
+import { FaBell } from "react-icons/fa";
 import { FiMenu, FiSearch } from "react-icons/fi";
-import { HiCode, HiCollection } from "react-icons/hi";
+import { ImBooks } from "react-icons/im";
+import {
+  HiCode,
+  HiUserGroup,
+  HiOutlineHome,
+  HiArrowSmRight,
+} from "react-icons/hi";
 import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
-//import { Logo } from "@choc-ui/logo";
+import { Routes, Route, Link } from "react-router-dom";
+import Dashboard from "../pages/Dashboard";
+import Users from "../pages/Users";
+import Products from "../pages/Products";
 
 export const Layout = () => {
   const sidebar = useDisclosure();
@@ -102,9 +109,15 @@ export const Layout = () => {
         color="gray.600"
         aria-label="Main Navigation"
       >
-        <NavItem icon={MdHome}>Dashboard</NavItem>
-        <NavItem icon={FaRss}>Productos</NavItem>
-        <NavItem icon={HiCollection}>Usuarios</NavItem>
+        <Link to="/">
+          <NavItem icon={HiOutlineHome}>Dashboard</NavItem>
+        </Link>
+        <Link to="/products">
+          <NavItem icon={ImBooks}>Libros</NavItem>
+        </Link>
+        <Link to="/users">
+          <NavItem icon={HiUserGroup}>Usuarios</NavItem>
+        </Link>
         <NavItem icon={HiCode} onClick={integrations.onToggle}>
           Tablas secundarias
           <Icon
@@ -114,10 +127,10 @@ export const Layout = () => {
           />
         </NavItem>
         <Collapse in={integrations.isOpen}>
-          <NavItem pl="12" py="2">
+          <NavItem pl="12" py="2" icon={HiArrowSmRight}>
             Autores
           </NavItem>
-          <NavItem pl="12" py="2">
+          <NavItem pl="12" py="2" icon={HiArrowSmRight}>
             Géneros
           </NavItem>
         </Collapse>
@@ -179,13 +192,11 @@ export const Layout = () => {
 
         <Box as="main" p="4">
           {/* Add content here, remove div below  */}
-          <Text>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab nisi ex
-            officiis eius consequatur quaerat maxime deleniti atque magni nam
-            dignissimos corrupti, aut commodi cumque, recusandae vel
-            exercitationem modi fugit?
-          </Text>
-          <Box borderWidth="4px" borderStyle="dashed" rounded="md" h="96" />
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/products" element={<Products />} />
+          </Routes>
         </Box>
       </Box>
     </Box>
