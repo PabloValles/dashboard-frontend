@@ -18,6 +18,7 @@ const TableProducts = ({ size }) => {
     fetch("http://localhost:3000/api/products")
       .then((res) => res.json())
       .then((data) => {
+        console.log(data.data);
         setProducts(data.data);
       })
       .catch((err) => console.log(err));
@@ -37,10 +38,12 @@ const TableProducts = ({ size }) => {
         <Tbody>
           {products.length > 0 &&
             products.map((p) => {
+              const { authors } = p;
+
               return (
                 <Tr key={p.id}>
-                  <Td>{p.id}</Td>
                   <Td>{p.name}</Td>
+                  <Td>{authors.first_name + " " + authors.last_name}</Td>
                   <Td>{p.gender}</Td>
                 </Tr>
               );
