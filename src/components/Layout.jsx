@@ -30,6 +30,8 @@ import { Routes, Route, Link } from "react-router-dom";
 import Dashboard from "../pages/Dashboard";
 import Users from "../pages/Users";
 import Products from "../pages/Products";
+import Authors from "../pages/Authors";
+import NotFound404 from "../pages/NotFound404";
 
 export const Layout = () => {
   const sidebar = useDisclosure();
@@ -92,15 +94,17 @@ export const Layout = () => {
       {...props}
     >
       <Flex px="4" py="5" align="center">
-        <Text
-          fontSize="2xl"
-          ml="2"
-          color="brand.500"
-          _dark={{ color: "white" }}
-          fontWeight="semibold"
-        >
-          Booksarmy
-        </Text>
+        <Link to="/" exact="true">
+          <Text
+            fontSize="2xl"
+            ml="2"
+            color="brand.500"
+            _dark={{ color: "white" }}
+            fontWeight="semibold"
+          >
+            Booksarmy
+          </Text>
+        </Link>
       </Flex>
       <Flex
         direction="column"
@@ -109,7 +113,7 @@ export const Layout = () => {
         color="gray.600"
         aria-label="Main Navigation"
       >
-        <Link to="/">
+        <Link to="/" exact="true">
           <NavItem icon={HiOutlineHome}>Dashboard</NavItem>
         </Link>
         <Link to="/products">
@@ -127,9 +131,11 @@ export const Layout = () => {
           />
         </NavItem>
         <Collapse in={integrations.isOpen}>
-          <NavItem pl="12" py="2" icon={HiArrowSmRight}>
-            Autores
-          </NavItem>
+          <Link to="/authors">
+            <NavItem pl="12" py="2" icon={HiArrowSmRight}>
+              Autores
+            </NavItem>
+          </Link>
           <NavItem pl="12" py="2" icon={HiArrowSmRight}>
             Géneros
           </NavItem>
@@ -190,12 +196,15 @@ export const Layout = () => {
           </Flex>
         </Flex>
 
+        {/* CONTENEDOR PRINCIPAL */}
         <Box as="main" p="4">
           {/* Add content here, remove div below  */}
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/users" element={<Users />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/authors" element={<Authors />} />
+            <Route path="*" element={<NotFound404 />} />
           </Routes>
         </Box>
       </Box>

@@ -11,7 +11,7 @@ import { BsPerson } from "react-icons/bs";
 import { FiServer } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 
-function StatsCard({ title, stat, icon, table }) {
+function StatsCard({ title, icon, table }) {
   const [data, setData] = useState([]);
   const [counter, setCounter] = useState(0);
 
@@ -21,8 +21,6 @@ function StatsCard({ title, stat, icon, table }) {
       .then((data) => {
         setData(data.data);
         setCounter(data.total);
-        console.log(data);
-        console.log(counter);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -62,19 +60,17 @@ export default function BasicStatistics() {
       <Flex justifyContent="space-around" gap="5rem">
         <StatsCard
           title="Users"
-          stat="5,000"
           table="users"
           icon={<BsPerson size={"3em"} />}
         />
         <StatsCard
           title={"Libros"}
-          stat={"1,000"}
           table="products"
           icon={<FiServer size={"3em"} />}
         />
         <StatsCard
-          title={"Géneros"}
-          stat={"7"}
+          title={"Autores"}
+          table="authors"
           icon={<GoLocation size={"3em"} />}
         />
       </Flex>
