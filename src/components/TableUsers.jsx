@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  Badge,
   Table,
   Thead,
   Tbody,
@@ -32,7 +33,7 @@ const TableUsers = ({ size }) => {
             <Th>#</Th>
             <Th>Nombre</Th>
             <Th>Email</Th>
-            <Th>Imágen</Th>
+            <Th>Tipo de usuario</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -43,7 +44,13 @@ const TableUsers = ({ size }) => {
                   <Td>{user.id}</Td>
                   <Td>{user.first_name + " " + user.last_name}</Td>
                   <Td>{user.email}</Td>
-                  <Td>Imágen</Td>
+                  <Td>
+                    {user.category_id == 1 ? (
+                      <Badge colorScheme="green">Admin</Badge>
+                    ) : (
+                      <Badge colorScheme="yellow">Visitante</Badge>
+                    )}
+                  </Td>
                 </Tr>
               );
             })}
@@ -53,6 +60,7 @@ const TableUsers = ({ size }) => {
             <Th>Título</Th>
             <Th>Autor</Th>
             <Th>Categorias</Th>
+            <Th>Tipo de usuario</Th>
           </Tr>
         </Tfoot>
       </Table>

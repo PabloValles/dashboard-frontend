@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  Button,
   Table,
   Thead,
   Tbody,
@@ -10,6 +11,7 @@ import {
   TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const TableProducts = ({ size }) => {
   const [products, setProducts] = useState([]);
@@ -18,7 +20,6 @@ const TableProducts = ({ size }) => {
     fetch("http://localhost:3000/api/products")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data);
         setProducts(data.data);
       })
       .catch((err) => console.log(err));
@@ -33,6 +34,7 @@ const TableProducts = ({ size }) => {
             <Th>Título</Th>
             <Th>Autor</Th>
             <Th>Categorias</Th>
+            <Th>Ver libro</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -45,6 +47,13 @@ const TableProducts = ({ size }) => {
                   <Td>{p.name}</Td>
                   <Td>{authors.first_name + " " + authors.last_name}</Td>
                   <Td>{p.gender}</Td>
+                  <Td>
+                    <Link to={"/products/" + p.id}>
+                      <Button colorScheme="green" variant="solid" size="sm">
+                        Ver libro
+                      </Button>
+                    </Link>
+                  </Td>
                 </Tr>
               );
             })}

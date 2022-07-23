@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Center,
@@ -6,12 +7,31 @@ import {
   Text,
   Stack,
   Image,
+  Divider,
 } from "@chakra-ui/react";
 
-const IMAGE =
-  "https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80";
-
 export default function ProductSimple() {
+  const url = "http://localhost:3000/api/products";
+  const baseImg = "http://localhost:3000/img/uploads/";
+  const [image, setImage] = useState(
+    "https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+  );
+  const [lastProduct, setLastProduct] = useState({});
+  const [author, setAuthor] = useState({});
+
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        let lastProduct = data.data.pop();
+        let author = lastProduct.authors;
+        setLastProduct(lastProduct);
+        setAuthor(author);
+        setImage(baseImg + "/" + lastProduct.image);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Center py={12}>
       <Box
@@ -38,7 +58,7 @@ export default function ProductSimple() {
             pos: "absolute",
             top: 5,
             left: 0,
-            backgroundImage: `url(${IMAGE})`,
+            backgroundImage: `url(${image})`,
             filter: "blur(15px)",
             zIndex: -1,
           }}
@@ -50,10 +70,10 @@ export default function ProductSimple() {
         >
           <Image
             rounded={"lg"}
-            height={230}
+            height={260}
             width={282}
             objectFit={"cover"}
-            src={IMAGE}
+            src={image}
           />
         </Box>
         <Stack pt={10} align={"center"}>
@@ -61,14 +81,23 @@ export default function ProductSimple() {
             Ultimo libro
           </Text>
           <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
-            Nombre del libro
+            {lastProduct.name}
           </Heading>
+          <Heading
+            color={"gray.400"}
+            fontSize={"xl"}
+            fontFamily={"body"}
+            fontWeight={500}
+          >
+            {`Autor ${author.first_name} ${author.last_name}`}
+          </Heading>
+          <Divider />
           <Stack direction={"row"} align={"center"}>
             <Text fontWeight={800} fontSize={"xl"}>
-              $57
+              ${lastProduct.price}
             </Text>
             <Text textDecoration={"line-through"} color={"gray.600"}>
-              $199
+              ${lastProduct.price + 1000}
             </Text>
           </Stack>
         </Stack>

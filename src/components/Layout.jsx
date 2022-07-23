@@ -137,9 +137,6 @@ export const Layout = () => {
               Autores
             </NavItem>
           </Link>
-          <NavItem pl="12" py="2" icon={HiArrowSmRight}>
-            Géneros
-          </NavItem>
         </Collapse>
       </Flex>
     </Box>
