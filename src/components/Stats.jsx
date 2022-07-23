@@ -11,7 +11,8 @@ import { BsPerson } from "react-icons/bs";
 import { FiServer } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 
-function StatsCard({ title, icon, table }) {
+
+function StatsCard({ title, icon, table, background, text }) {
   const [data, setData] = useState([]);
   const [counter, setCounter] = useState(0);
 
@@ -31,9 +32,11 @@ function StatsCard({ title, icon, table }) {
       py={"5"}
       w="full"
       shadow={"xl"}
-      border={"1px solid"}
-      borderColor={useColorModeValue("gray.800", "gray.500")}
+      border={"2px solid"}
+      borderColor={`${background}`}
       rounded={"lg"}
+      bg={background}
+      color={text}
     >
       <Flex justifyContent={"space-between"}>
         <Box>
@@ -42,11 +45,7 @@ function StatsCard({ title, icon, table }) {
             {counter}
           </StatNumber>
         </Box>
-        <Box
-          my={"auto"}
-          color={useColorModeValue("gray.800", "gray.200")}
-          alignContent={"center"}
-        >
+        <Box my={"auto"} color={text} alignContent={"center"}>
           {icon}
         </Box>
       </Flex>
@@ -61,16 +60,22 @@ export default function BasicStatistics() {
         <StatsCard
           title="Users"
           table="users"
+          background="cyan.600"
+          text="white"
           icon={<BsPerson size={"3em"} />}
         />
         <StatsCard
           title={"Libros"}
           table="products"
+          background="green.500"
+          text="white"
           icon={<FiServer size={"3em"} />}
         />
         <StatsCard
           title={"Autores"}
           table="authors"
+          background="purple.500"
+          text="white"
           icon={<GoLocation size={"3em"} />}
         />
       </Flex>

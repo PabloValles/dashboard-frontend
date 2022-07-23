@@ -27,11 +27,13 @@ import {
 } from "react-icons/hi";
 import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
 import { Routes, Route, Link } from "react-router-dom";
+import Footer from "../components/Footer";
 import Dashboard from "../pages/Dashboard";
 import Users from "../pages/Users";
 import Products from "../pages/Products";
 import Authors from "../pages/Authors";
 import NotFound404 from "../pages/NotFound404";
+import ColorModeToggle from "../components/ColorModeToggle";
 
 export const Layout = () => {
   const sidebar = useDisclosure();
@@ -48,11 +50,10 @@ export const Layout = () => {
         py="3"
         cursor="pointer"
         color="inherit"
-        _dark={{ color: "gray.400" }}
+        _dark={{ color: "white" }}
         _hover={{
-          bg: "gray.100",
-          _dark: { bg: "gray.900" },
-          color: "gray.900",
+          bg: "cyan.400",
+          color: "white",
         }}
         role="group"
         fontWeight="semibold"
@@ -181,10 +182,10 @@ export const Layout = () => {
             <InputLeftElement color="gray.500">
               <FiSearch />
             </InputLeftElement>
-            <Input placeholder="Search for articles..." />
+            <Input placeholder="Buscar..." />
           </InputGroup>
 
-          <Flex align="center">
+          <Flex align="center" mx="3px">
             <Icon color="gray.500" as={FaBell} cursor="pointer" />
             <Avatar
               ml="4"
@@ -193,6 +194,9 @@ export const Layout = () => {
               src="https://avatars.githubusercontent.com/u/30869823?v=4"
               cursor="pointer"
             />
+            <Box ml="1rem">
+              <ColorModeToggle />
+            </Box>
           </Flex>
         </Flex>
 
@@ -207,6 +211,7 @@ export const Layout = () => {
             <Route path="*" element={<NotFound404 />} />
           </Routes>
         </Box>
+        <Footer />
       </Box>
     </Box>
   );
