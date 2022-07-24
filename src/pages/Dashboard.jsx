@@ -1,13 +1,10 @@
 import React from "react";
 import { Heading, useColorMode, useColorModeValue } from "@chakra-ui/react";
-import { Text, Box, Flex, Divider } from "@chakra-ui/react";
-import { Icon, Image, chakra } from "@chakra-ui/react";
-import { MdEmail, MdHeadset, MdLocationOn } from "react-icons/md";
-import { BsFillBriefcaseFill } from "react-icons/bs";
+import { Center, Text, Box, Flex, Divider } from "@chakra-ui/react";
 import TableProducts from "../components/TableProducts";
 import BasicStatistics from "../components/Stats";
 import ProductSimple from "../components/ProductSimple";
-import ColorModeToggle from "../components/ColorModeToggle";
+import Generos from "../components/Generos";
 
 const Dashboard = () => {
   return (
@@ -24,7 +21,7 @@ const Dashboard = () => {
       <Flex mt="2rem" px="2rem">
         <Box w="" py="1rem">
           <Heading as="h3" size="xl">
-            Última película en la DB
+            Último libro en la DB
           </Heading>
 
           <ProductSimple />
@@ -36,7 +33,7 @@ const Dashboard = () => {
           ml="2rem"
         >
           <Heading as="h3" size="xl">
-            Nuestros Productos
+            Nuestros libros
           </Heading>
 
           <Box pt={10}>
@@ -46,20 +43,16 @@ const Dashboard = () => {
       </Flex>
 
       <Box
-        bg={useColorModeValue("white", "gray.700")}
+        bg={useColorModeValue("whiteAlpha.50", "gray.700")}
         py={2}
         px="2rem"
         mt="1rem"
       >
-        <Heading as="h3" size="xl">
-          Películas según los géneros
+        <Heading as="h3" mb="1rem" size="xl">
+          Libros según géneros
         </Heading>
 
-        <Flex justifyContent="space-between">
-          <ProductSimple />
-          <ProductSimple />
-          <ProductSimple />
-        </Flex>
+        <Generos />
       </Box>
 
       <Box pb="2rem"></Box>

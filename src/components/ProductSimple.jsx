@@ -39,7 +39,7 @@ export default function ProductSimple() {
         p={6}
         maxW={"330px"}
         w={"full"}
-        bg={useColorModeValue("white", "gray.800")}
+        bg={useColorModeValue("whiteAlpha.50", "gray.600")}
         boxShadow={"2xl"}
         rounded={"lg"}
         pos={"relative"}

@@ -34,6 +34,7 @@ import Products from "../pages/Products";
 import Authors from "../pages/Authors";
 import NotFound404 from "../pages/NotFound404";
 import ColorModeToggle from "../components/ColorModeToggle";
+import BookDetail from "../pages/BookDetail";
 
 export const Layout = () => {
   const sidebar = useDisclosure();
@@ -205,6 +206,7 @@ export const Layout = () => {
             <Route path="/users" element={<Users />} />
             <Route path="/products" element={<Products />} />
             <Route path="/authors" element={<Authors />} />
+            <Route path="/products/:id" element={<BookDetail />} />
             <Route path="*" element={<NotFound404 />} />
           </Routes>
         </Box>
