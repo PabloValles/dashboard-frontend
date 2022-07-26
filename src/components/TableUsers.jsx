@@ -54,12 +54,17 @@ const TableUsers = ({ size }) => {
                 </Tr>
               );
             })}
+          {users.length < 1 && (
+            <Tr>
+              <Td colSpan="4">"No hay datos para mostrar"</Td>
+            </Tr>
+          )}
         </Tbody>
         <Tfoot>
           <Tr>
-            <Th>Título</Th>
-            <Th>Autor</Th>
-            <Th>Categorias</Th>
+            <Th>#</Th>
+            <Th>Nombre</Th>
+            <Th>Email</Th>
             <Th>Tipo de usuario</Th>
           </Tr>
         </Tfoot>

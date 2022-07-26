@@ -14,10 +14,11 @@ import {
 } from "@chakra-ui/react";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { Link, Routes, Route, useParams } from "react-router-dom";
+import bookDefaultImg from "../assets/img/book-default.png";
 
 const BookDetail = () => {
   const { id } = useParams();
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(bookDefaultImg);
   const [product, setProduct] = useState({});
   const [author, setAuthor] = useState({});
 
@@ -25,7 +26,7 @@ const BookDetail = () => {
     fetch(`http://localhost:3000/api/products/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        setImage(data.urlImagen);
+        setImage(data.data.urlImagen);
         setProduct(data.data.book);
         setAuthor(data.data.book.authors);
       })

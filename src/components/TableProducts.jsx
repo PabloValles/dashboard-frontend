@@ -59,7 +59,7 @@ const TableProducts = ({ size }) => {
             })}
           {products.length < 1 && (
             <Tr>
-              <Td colSpan="3">"No hay datos para mostrar"</Td>
+              <Td colSpan="4">"No hay datos para mostrar"</Td>
             </Tr>
           )}
         </Tbody>

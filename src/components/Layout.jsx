@@ -143,20 +143,9 @@ export const Layout = () => {
     </Box>
   );
 
-  return (
-    <Box as="section" bg="gray.50" _dark={{ bg: "gray.700" }} minH="100vh">
-      <SidebarContent display={{ base: "none", md: "unset" }} />
-      <Drawer
-        isOpen={sidebar.isOpen}
-        onClose={sidebar.onClose}
-        placement="left"
-      >
-        <DrawerOverlay />
-        <DrawerContent>
-          <SidebarContent w="full" borderRight="none" />
-        </DrawerContent>
-      </Drawer>
-      <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
+  const Navbar = () => {
+    return (
+      <>
         <Flex
           as="header"
           align="center"
@@ -197,6 +186,25 @@ export const Layout = () => {
             </Box>
           </Flex>
         </Flex>
+      </>
+    );
+  };
+
+  return (
+    <Box as="section" bg="gray.50" _dark={{ bg: "gray.700" }} minH="100vh">
+      <SidebarContent display={{ base: "none", md: "unset" }} />
+      <Drawer
+        isOpen={sidebar.isOpen}
+        onClose={sidebar.onClose}
+        placement="left"
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <SidebarContent w="full" borderRight="none" />
+        </DrawerContent>
+      </Drawer>
+      <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
+        <Navbar />
 
         {/* CONTENEDOR PRINCIPAL */}
         <Box as="main" p="4">

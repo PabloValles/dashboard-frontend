@@ -9,13 +9,12 @@ import {
   Image,
   Divider,
 } from "@chakra-ui/react";
+import bookDefaultImg from "../assets/img/book-default.png";
 
 export default function ProductSimple() {
   const url = "http://localhost:3000/api/products";
   const baseImg = "http://localhost:3000/img/uploads/";
-  const [image, setImage] = useState(
-    "https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
-  );
+  const [image, setImage] = useState(bookDefaultImg);
   const [lastProduct, setLastProduct] = useState({});
   const [author, setAuthor] = useState({});
 
@@ -81,7 +80,7 @@ export default function ProductSimple() {
             Ultimo libro
           </Text>
           <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
-            {lastProduct.name}
+            {lastProduct.name ? lastProduct.name : "No hay libros"}
           </Heading>
           <Heading
             color={"gray.400"}
@@ -89,17 +88,21 @@ export default function ProductSimple() {
             fontFamily={"body"}
             fontWeight={500}
           >
-            {`Autor ${author.first_name} ${author.last_name}`}
+            {lastProduct.name != undefined
+              ? `Autor ${author.first_name} ${author.last_name}`
+              : null}
           </Heading>
           <Divider />
-          <Stack direction={"row"} align={"center"}>
-            <Text fontWeight={800} fontSize={"xl"}>
-              ${lastProduct.price}
-            </Text>
-            <Text textDecoration={"line-through"} color={"gray.600"}>
-              ${lastProduct.price + 1000}
-            </Text>
-          </Stack>
+          {lastProduct.name && (
+            <Stack direction={"row"} align={"center"}>
+              <Text fontWeight={800} fontSize={"xl"}>
+                ${lastProduct.price}
+              </Text>
+              <Text textDecoration={"line-through"} color={"gray.500"}>
+                ${lastProduct.price + 1000}
+              </Text>
+            </Stack>
+          )}
         </Stack>
       </Box>
     </Center>

@@ -4,7 +4,6 @@ import { Center, Text, Box, Flex, Divider } from "@chakra-ui/react";
 import TableProducts from "../components/TableProducts";
 import BasicStatistics from "../components/Stats";
 import ProductSimple from "../components/ProductSimple";
-import Generos from "../components/Generos";
 
 const Dashboard = () => {
   return (
@@ -41,19 +40,6 @@ const Dashboard = () => {
           </Box>
         </Box>
       </Flex>
-
-      <Box
-        bg={useColorModeValue("whiteAlpha.50", "gray.700")}
-        py={2}
-        px="2rem"
-        mt="1rem"
-      >
-        <Heading as="h3" mb="1rem" size="xl">
-          Libros según géneros
-        </Heading>
-
-        <Generos />
-      </Box>
 
       <Box pb="2rem"></Box>
     </>
