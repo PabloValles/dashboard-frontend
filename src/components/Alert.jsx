@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Flex, Icon, chakra } from "@chakra-ui/react";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 
-const Alert = ({ gender }) => {
+const Alert = ({ gender, cant }) => {
   return (
     <Flex
       maxW="sm"
@@ -32,7 +32,7 @@ const Alert = ({ gender }) => {
             _dark={{ color: "gray.200" }}
             fontSize="sm"
           >
-            10
+            {cant}
           </chakra.p>
         </Box>
       </Box>
